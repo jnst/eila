@@ -1,0 +1,21 @@
+.body {
+  font-family: 'Lucida Grande','Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+}
+
+.main {
+  width: 650px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin:-325px 0 0 -325px;
+}
+
+.img-main {
+  border: 1px solid #b3b3b3;
+  border-radius: 4px;
+  box-shadow: 0 1px 10px #a7a7a7, inset 0 1px 0 #fff;
+}
+
+.talk {
+  font-family: 'Allerta Stencil', sans-serif;
+}
