@@ -1,0 +1,14 @@
+.container {
+  width: 400px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin:-200px 0 0 -200px;
+}
+
+.nav-title {
+  font-family: 'Lucida Grande','Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+  font-size: x-large;
+  padding-top: 10px;
+  text-align: center;
+}

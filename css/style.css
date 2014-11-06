@@ -4,10 +4,10 @@
 
 .main {
   width: 650px;
-  position:absolute;
-  top:50%;
-  left:50%;
-  margin:-325px 0 0 -325px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -200px 0 0 -325px;
 }
 
 .img-main {

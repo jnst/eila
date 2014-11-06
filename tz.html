@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/tz.css">
+  <title>Time Zone</title>
+</head>
+<body ng-controller="TzCtrl">
+
+  <div class="container mb-20">
+    <h2>Time Zone</h2>
+    <p>{{hello()}}</p>
+  </div>
+
+  <div class="container">
+    <div class="container-input mb-40">
+      <h3>タイムゾーン変換</h3>
+      <div class="input-group mb-5">
+        <span class="input-group-addon">JST</span>
+        <input ng-model="inputJst" ng-change="convertToPdt()" type="text" class="form-control" placeholder="0-23">
+        <span class="input-group-addon">時</span>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <span class="input-group-addon">PDT</span>
+        <input ng-model="resultJst" type="text" class="form-control" placeholder="">
+      </div>
+      <div class="input-group mb-5">
+        <span class="input-group-addon">PDT</span>
+        <input ng-model="inputPdt" ng-change="convertToJst()" type="text" class="form-control" placeholder="0-23">
+        <span class="input-group-addon">時</span>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <span class="input-group-addon">JST</span>
+        <input ng-model="resultPdt" type="text" class="form-control" placeholder="">
+      </div>
+    </div>
+
+    <div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="text-center">略称</th>
+            <th class="text-center">夏時間</th>
+            <th class="text-center">代表的な都市</th>
+            <th class="text-center">タイムゾーンID</th>
+            <th class="text-center">UTCとの時差</th>
+            <th class="text-center">現在時間</th>
+            <th class="text-center"></th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr>
+            <td>ChST</td>
+            <td></td>
+            <td>グアム</td>
+            <td>Pacific/Guam</td>
+            <td>+1000</td>
+            <td class="realtime">{{now(10)}}</td>
+            <td><button type="button" class="btn btn-info" rel="popover" title="ChST" data-content="Chamorro Standard Time<br>チャモロ標準時" data-placement="top" data-trigger="hover">Info</button></td>
+          </tr>
+          <tr>
+            <td class="text-primary"><strong>JST</strong></td>
+            <td class="text-primary"><strong></strong></td>
+            <td class="text-primary"><strong>東京</strong></td>
+            <td class="text-primary"><strong>Asia/Tokyo</strong></td>
+            <td class="text-primary"><strong>+0900</strong></td>
+            <td class="text-primary"><strong class="realtime">{{now(9)}}</strong></td>
+            <td><button type="button" class="btn btn-info" rel="popover" title="JST" data-content="Japan Standard Time<br>日本標準時間" data-placement="top" data-trigger="hover">Info</button></td>
+          </tr>
+          <tr>
+            <td>CST</td>
+            <td></td>
+            <td>台北</td>
+            <td>Asia/Taipei</td>
+            <td>+0800</td>
+            <td class="realtime">{{now(8)}}</td>
+            <td><button type="button" class="btn btn-info" rel="popover" title="ICT" data-content="Chinese Standard Time<br>中国標準時" data-placement="top" data-trigger="hover">Info</button></td>
+          </tr>
+          <tr>
+            <td>ICT</td>
+            <td></td>
+            <td>バンコク</td>
+            <td>Asia/Bangkok</td>
+            <td>+0700</td>
+            <td class="realtime">{{now(7)}}</td>
+            <td><button type="button" class="btn btn-info" rel="popover" title="ICT" data-content="Indochina Time<br>インドシナ時間" data-placement="top" data-trigger="hover">Info</button></td>
+          </tr>
+          <tr>
+            <td>MVT</td>
+            <td></td>
+            <td>モルディブ</td>
+            <td>Indian/Maldives</td>
+            <td>+0600</td>
+            <td class="realtime">{{now(6)}}</td>
+            <td><button type="button" class="btn btn-info" rel="popover" title="MVT" data-content="Maldives Time<br>モルディブ時間" data-placement="top" data-trigger="hover">Info</button></td>
+          </tr>
+          <tr>
+            <td>EEST</td>
+            <td><span class="label label-warning">Yes</span></td>
+            <td>ヘルシンキ</td>
+            <td>Europe/Helsinki</td>
+            <td>+0300</td>
+            <td class="realtime">{{now(3)}}</td>
+            <td><button type="button" class="btn btn-info" rel="popover" title="EEST" data-content="Eastern European Summer Time<br>東ヨーロッパ夏時間" data-placement="top" data-trigger="hover">Info</button></td>
+          </tr>
+          <tr>
+            <td>EET</td>
+            <td></td>
+            <td>ヘルシンキ</td>
+            <td>Europe/Helsinki</td>
+            <td>+0200</td>
+            <td class="realtime">{{now(2)}}</td>
+            <td><button type="button" class="btn btn-info" rel="popover" title="EET" data-content="Eastern European Time<br>東ヨーロッパ時間" data-placement="top" data-trigger="hover">Info</button></td>
+          </tr>
+          <tr>
+            <td>BST</td>
+            <td><span class="label label-warning">Yes</span></td>
+            <td>ロンドン</td>
+            <td>Europe/London</td>
+            <td>+0100</td>
+            <td class="realtime">{{now(1)}}</td>
+            <td><button type="button" class="btn btn-info" rel="popover" title="BST" data-content="British Summer Time<br>英国夏時間" data-placement="top" data-trigger="hover">Info</button></td>
+          </tr>
+          <tr>
+            <td>GMT</td>
+            <td></td>
+            <td>ロンドン</td>
+            <td>Europe/London</td>
+            <td>+0000</td>
+            <td class="realtime">{{now(0)}}</td>
+            <td><button type="button" class="btn btn-info" rel="popover" title="GMT" data-content="Greenwich Mean Time<br>グリニッジ標準時" data-placement="top" data-trigger="hover">Info</button></td>
+          </tr>
+          <tr>
+            <td>UTC</td>
+            <td></td>
+            <td>-</td>
+            <td>-</td>
+            <td>+0000</td>
+            <td class="realtime">{{now(0)}}</td>
+            <td><button type="button" class="btn btn-info" rel="popover" title="UTC" data-content="Coordinated Universal Time<br>協定世界時" data-placement="top" data-trigger="hover">Info</button></td>
+          </tr>
+          <tr>
+            <td>PDT</td>
+            <td><span class="label label-warning">Yes</span></td>
+            <td>サンフランシスコ</td>
+            <td>US/Pacific</td>
+            <td>-0700</td>
+            <td class="realtime">{{now(-7)}}</td>
+            <td><button type="button" class="btn btn-info" rel="popover" title="PDT" data-content="Pacific Daylight Time<br>太平洋夏時間" data-placement="top" data-trigger="hover">Info</button></td>
+          </tr>
+          <tr>
+            <td>PST</td>
+            <td></td>
+            <td>サンフランシスコ</td>
+            <td>US/Pacific</td>
+            <td>-0800</td>
+            <td class="realtime">{{now(-8)}}</td>
+            <td><button type="button" class="btn btn-info" rel="popover" title="PST" data-content="Pacific Standard Time<br>太平洋標準時" data-placement="top" data-trigger="hover">Info</button></td>
+          </tr>
+          <tr>
+            <td >HAST</td>
+            <td></td>
+            <td>ホノルル</td>
+            <td>Pacific/Honolulu</td>
+            <td>-1000</td>
+            <td class="realtime">{{now(-10)}}</td>
+            <td><button type="button" class="btn btn-info" rel="popover" title="HAST" data-content="Hawaii-Aleutian Standard Time<br>ハワイ・アリューシャン標準時" data-placement="top" data-trigger="hover">Info</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.3.1/moment-with-langs.js"></script>
+  <script src="js/tz.js"></script>
+</body>
+</html>
